@@ -1,0 +1,17 @@
+{
+  "node": {
+    "600ceb64189ecf4239d1ef647e08517c493fcf69a0": {
+      "workers": {
+        "app/admin/login/page": {
+          "moduleId": 12751,
+          "async": true,
+          "exportedName": "loginAdmin",
+          "filename": "src/app/actions/admin.ts"
+        }
+      },
+      "exportedName": "loginAdmin",
+      "filename": "src/app/actions/admin.ts"
+    }
+  },
+  "edge": {}
+}

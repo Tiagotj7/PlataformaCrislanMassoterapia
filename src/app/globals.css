@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-poppins), sans-serif;
+  --font-bebas: var(--font-bebas), sans-serif;
+  --color-primary: #006BFF;
+  --color-primary-dark: #003A7A;
+  --color-primary-light: #00A8FF;
+  --color-dark: #0B0B0B;
+  --color-dark-gray: #1F1F1F;
+}
+
+/* Custom styles for smooth appearance */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0B0B;
+}
+::-webkit-scrollbar-thumb {
+  background: #1F1F1F;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #003A7A;
+}
+
+/* Elegant card subtle glow hover animations */
+.glow-on-hover {
+  transition: all 0.3s ease-in-out;
+}
+.glow-on-hover:hover {
+  box-shadow: 0 0 25px rgba(0, 107, 255, 0.25);
+  transform: translateY(-4px);
+}

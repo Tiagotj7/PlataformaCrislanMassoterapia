@@ -4,6 +4,7 @@ import { db } from "@/db";
 import { services, settings, appointments, clients, blockedDates, blockedHours, testimonials, gallery, logs, users } from "@/db/schema";
 import { eq, desc, and, ilike, sql } from "drizzle-orm";
 import { cookies } from "next/headers";
+import { verifyPassword } from "@/lib/password";
 
 const ADMIN_COOKIE_NAME = "crislan_admin_session";
 
@@ -21,8 +22,7 @@ export async function loginAdmin(email: string, passwordString: string) {
     }
     const adminUser = userList[0];
     
-    // In demo/starter mode, compare passwords directly
-    if (adminUser.passwordHash !== passwordString) {
+    if (!(await verifyPassword(passwordString, adminUser.passwordHash))) {
       return { success: false, message: "E-mail ou senha incorretos." };
     }
 

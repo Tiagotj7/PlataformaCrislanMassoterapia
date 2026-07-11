@@ -1,19 +1,8 @@
 import { db } from "./index";
-import { users, services, settings, testimonials, gallery, clients, appointments } from "./schema";
+import { services, settings, testimonials, gallery, clients, appointments } from "./schema";
 import { eq } from "drizzle-orm";
 
 export async function initializeDatabase() {
-  // Check if admin user exists
-  const existingUsers = await db.select().from(users).limit(1);
-  if (existingUsers.length === 0) {
-    await db.insert(users).values({
-      name: "Crislan Massoterapeuta",
-      email: "admin@crislan.com",
-      passwordHash: "senha123", // Plain text or simple hash for demo purposes
-      role: "admin"
-    });
-  }
-
   // Check if settings exist
   const existingSettings = await db.select().from(settings).limit(1);
   if (existingSettings.length === 0) {

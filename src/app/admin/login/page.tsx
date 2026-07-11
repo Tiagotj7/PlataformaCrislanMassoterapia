@@ -4,18 +4,18 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { loginAdmin } from "@/app/actions/admin";
-import { Lock, Mail, ShieldAlert, CheckCircle2, ArrowRight, ShieldCheck, Zap, Sparkles } from "lucide-react";
+import { Lock, Mail, ShieldAlert, CheckCircle2, ArrowRight } from "lucide-react";
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("admin@crislan.com");
-  const [password, setPassword] = useState("senha123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
 
-  const handleLoginSubmit = async (e?: React.FormEvent) => {
-    if (e) e.preventDefault();
+  const handleLoginSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     setLoading(true);
     setErrorMsg("");
     setSuccessMsg("");
@@ -49,29 +49,6 @@ export default function AdminLoginPage() {
             <h2 className="font-bebas text-3xl tracking-wider text-white">PAINEL ADMINISTRATIVO</h2>
             <span className="text-xs uppercase tracking-widest font-semibold text-[#00A8FF]">Crislan Massoterapeuta</span>
           </div>
-        </div>
-
-        {/* Demo Notification banner */}
-        <div className="p-4 rounded-2xl bg-[#141414] border border-[#1F1F1F] space-y-2 text-xs text-slate-300">
-          <div className="flex items-center gap-2 text-amber-400 font-semibold">
-            <Zap className="w-4 h-4" />
-            <span>Acesso Demonstrativo Rápido</span>
-          </div>
-          <p className="text-slate-400">
-            Utilize as credenciais abaixo ou clique no botão de acesso imediato para testar todas as funcionalidades do sistema:
-          </p>
-          <div className="bg-[#070707] p-2.5 rounded-xl border border-slate-800 font-mono text-[11px] text-slate-200">
-            E-mail: <strong>admin@crislan.com</strong> <br />
-            Senha: <strong>senha123</strong>
-          </div>
-          <button
-            type="button"
-            onClick={() => handleLoginSubmit()}
-            className="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500/20 to-amber-600/20 hover:from-amber-500/30 hover:to-amber-600/30 text-amber-300 font-bold flex items-center justify-center gap-2 border border-amber-500/30 transition-all"
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Entrar Automaticamente como Demo Admin</span>
-          </button>
         </div>
 
         {errorMsg && (

@@ -10,6 +10,8 @@ import { Footer } from "@/components/Footer";
 import { WhatsAppFloatingBtn } from "@/components/WhatsAppFloatingBtn";
 import { getServices, getPublicSettings } from "@/app/actions/booking";
 
+
+
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {

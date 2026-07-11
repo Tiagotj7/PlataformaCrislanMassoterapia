@@ -88,7 +88,7 @@ const settings = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_module
     id: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$serial$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["serial"])('id').primaryKey(),
     siteName: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["text"])('site_name').notNull().default('Crislan Massoterapeuta'),
     ownerName: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["text"])('owner_name').notNull().default('Crislan'),
-    whatsappNumber: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["text"])('whatsapp_number').notNull().default('5511999999999'),
+    whatsappNumber: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["text"])('whatsapp_number').notNull().default('5575981482035'),
     instagramHandle: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["text"])('instagram_handle').notNull().default('crislanmassoterapeuta'),
     address: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["text"])('address').notNull().default('Rua das Olimpíadas, 200 - Vila Olímpia, São Paulo - SP'),
     googleMapsUrl: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["text"])('google_maps_url').notNull().default('https://maps.google.com'),
@@ -201,6 +201,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$db$2f$index$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/src/db/index.ts [app-rsc] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$db$2f$schema$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/db/schema.ts [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/drizzle-orm/sql/expressions/conditions.js [app-rsc] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$sql$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/drizzle-orm/sql/sql.js [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$action$2d$validate$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/build/webpack/loaders/next-flight-loader/action-validate.js [app-rsc] (ecmascript)");
 var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$db$2f$index$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__
@@ -210,14 +211,57 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 ;
 ;
+const fallbackServices = [
+    {
+        id: 1,
+        title: "Massoterapia Desportiva",
+        slug: "massoterapia-desportiva",
+        description: "Focada em atletas e praticantes de atividade física. Auxilia na liberação de ácido lático, alivia fadiga muscular pós-treino e melhora a flexibilidade para prevenir lesões.",
+        durationMinutes: 60,
+        price: "180.00",
+        image: "https://images.pexels.com/photos/27730453/pexels-photo-27730453.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+        category: "Desportiva",
+        status: true,
+        featured: true
+    },
+    {
+        id: 2,
+        title: "Liberação Miofascial (IASTM)",
+        slug: "liberacao-miofascial",
+        description: "Técnica manual e instrumental para soltar a fáscia muscular. Desfaz pontos de gatilho, restaura a mobilidade das articulações e elimina dores crônicas.",
+        durationMinutes: 60,
+        price: "190.00",
+        image: "https://images.pexels.com/photos/27684617/pexels-photo-27684617.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+        category: "Miofascial",
+        status: true,
+        featured: true
+    }
+];
+const fallbackSettings = {
+    siteName: "Crislan Massoterapeuta",
+    ownerName: "Crislan",
+    whatsappNumber: "5511999999999",
+    instagramHandle: "crislanmassoterapeuta",
+    address: "Rua das Olimpíadas, 200 - Vila Olímpia, São Paulo - SP",
+    googleMapsUrl: "https://maps.google.com",
+    businessHourStart: "08:00",
+    businessHourEnd: "20:00",
+    lunchHourStart: "12:00",
+    lunchHourEnd: "13:30",
+    sundaysOpen: false,
+    autoMessageText: "Olá! Seu agendamento com Crislan Massoterapeuta foi recebido com sucesso."
+};
 async function getServices() {
     try {
-        const list = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$db$2f$index$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"].select().from(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$db$2f$schema$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["services"]).where((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$db$2f$schema$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["services"].status, true));
+        const activeStatusCondition = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$sql$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["sql"]`
+      COALESCE(${__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$db$2f$schema$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["services"].status}::text, '') IN ('true', '1', 't', 'yes', 'y')
+    `;
+        const list = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$db$2f$index$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"].select().from(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$db$2f$schema$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["services"]).where(activeStatusCondition);
         // Sort featured first
         return list.sort((a, b)=>(b.featured ? 1 : 0) - (a.featured ? 1 : 0));
     } catch (err) {
         console.error("Error fetching services:", err);
-        return [];
+        return fallbackServices;
     }
 }
 async function getPublicSettings() {
@@ -226,7 +270,7 @@ async function getPublicSettings() {
         return res[0] || null;
     } catch (err) {
         console.error("Error fetching settings:", err);
-        return null;
+        return fallbackSettings;
     }
 }
 async function getPublicGallery() {

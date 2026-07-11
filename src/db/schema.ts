@@ -53,7 +53,7 @@ export const settings = pgTable('settings', {
   id: serial('id').primaryKey(),
   siteName: text('site_name').notNull().default('Crislan Massoterapeuta'),
   ownerName: text('owner_name').notNull().default('Crislan'),
-  whatsappNumber: text('whatsapp_number').notNull().default('5511999999999'),
+  whatsappNumber: text('whatsapp_number').notNull().default('5575981482035'),
   instagramHandle: text('instagram_handle').notNull().default('crislanmassoterapeuta'),
   address: text('address').notNull().default('Rua das Olimpíadas, 200 - Vila Olímpia, São Paulo - SP'),
   googleMapsUrl: text('google_maps_url').notNull().default('https://maps.google.com'),

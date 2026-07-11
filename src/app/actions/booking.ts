@@ -2,16 +2,62 @@
 
 import { db } from "@/db";
 import { services, settings, appointments, clients, blockedDates, blockedHours, testimonials, gallery, logs } from "@/db/schema";
-import { eq, and, gte, lte, desc } from "drizzle-orm";
+import { eq, and, sql } from "drizzle-orm";
+
+const fallbackServices = [
+  {
+    id: 1,
+    title: "Massoterapia Desportiva",
+    slug: "massoterapia-desportiva",
+    description: "Focada em atletas e praticantes de atividade física. Auxilia na liberação de ácido lático, alivia fadiga muscular pós-treino e melhora a flexibilidade para prevenir lesões.",
+    durationMinutes: 60,
+    price: "180.00",
+    image: "https://images.pexels.com/photos/27730453/pexels-photo-27730453.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    category: "Desportiva",
+    status: true,
+    featured: true,
+  },
+  {
+    id: 2,
+    title: "Liberação Miofascial (IASTM)",
+    slug: "liberacao-miofascial",
+    description: "Técnica manual e instrumental para soltar a fáscia muscular. Desfaz pontos de gatilho, restaura a mobilidade das articulações e elimina dores crônicas.",
+    durationMinutes: 60,
+    price: "190.00",
+    image: "https://images.pexels.com/photos/27684617/pexels-photo-27684617.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    category: "Miofascial",
+    status: true,
+    featured: true,
+  },
+];
+
+const fallbackSettings = {
+  siteName: "Crislan Massoterapeuta",
+  ownerName: "Crislan",
+  whatsappNumber: "5511999999999",
+  instagramHandle: "crislanmassoterapeuta",
+  address: "Rua das Olimpíadas, 200 - Vila Olímpia, São Paulo - SP",
+  googleMapsUrl: "https://maps.google.com",
+  businessHourStart: "08:00",
+  businessHourEnd: "20:00",
+  lunchHourStart: "12:00",
+  lunchHourEnd: "13:30",
+  sundaysOpen: false,
+  autoMessageText: "Olá! Seu agendamento com Crislan Massoterapeuta foi recebido com sucesso.",
+};
 
 export async function getServices() {
   try {
-    const list = await db.select().from(services).where(eq(services.status, true));
+    const activeStatusCondition = sql`
+      COALESCE(${services.status}::text, '') IN ('true', '1', 't', 'yes', 'y')
+    `;
+
+    const list = await db.select().from(services).where(activeStatusCondition);
     // Sort featured first
     return list.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
   } catch (err) {
     console.error("Error fetching services:", err);
-    return [];
+    return fallbackServices;
   }
 }
 
@@ -21,7 +67,7 @@ export async function getPublicSettings() {
     return res[0] || null;
   } catch (err) {
     console.error("Error fetching settings:", err);
-    return null;
+    return fallbackSettings as any;
   }
 }
 

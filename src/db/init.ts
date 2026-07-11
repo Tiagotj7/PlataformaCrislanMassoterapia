@@ -9,7 +9,7 @@ export async function initializeDatabase() {
     await db.insert(settings).values({
       siteName: "Crislan Massoterapeuta",
       ownerName: "Crislan Massoterapeuta",
-      whatsappNumber: "5511998877665",
+      whatsappNumber: "5575981482035",
       instagramHandle: "crislan.massoterapia",
       address: "Av. Pres. Juscelino Kubitschek, 1400 - Vila Olímpia, São Paulo - SP",
       googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.282834181934!2d-46.68749452331572!3d-23.594165561413808!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5745dc7a0701%3A0x63cfbfd41d9c4901!2sAv.%20Pres.%20Juscelino%20Kubitschek%2C%201400%20-%20Vila%20Ol%C3%ADmpia%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004543-000!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr",
@@ -32,7 +32,7 @@ export async function initializeDatabase() {
         description: "Focada em atletas e praticantes de atividade física. Auxilia na liberação de ácido lático, alivia fadiga muscular pós-treino e melhora a flexibilidade para prevenir lesões.",
         durationMinutes: 60,
         price: "180.00",
-        image: "https://images.pexels.com/photos/27730453/pexels-photo-27730453.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+        image: "/images/logocrislanmassagem.jpeg",
         category: "Desportiva",
         status: true,
         featured: true
@@ -43,7 +43,7 @@ export async function initializeDatabase() {
         description: "Técnica manual e instrumental para soltar a fáscia muscular. Desfaz pontos de gatilho (trigger points), restaura a mobilidade das articulações e elimina dores crônicas.",
         durationMinutes: 60,
         price: "190.00",
-        image: "https://images.pexels.com/photos/27684617/pexels-photo-27684617.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+        image: "/images/crislamassage2.jpeg",
         category: "Miofascial",
         status: true,
         featured: true
@@ -126,7 +126,7 @@ export async function initializeDatabase() {
     const sampleGallery = [
       {
         title: "Recuperação de Membros Inferiores",
-        imageUrl: "https://images.pexels.com/photos/27730453/pexels-photo-27730453.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+        imageUrl: "/images/logocrislanmassagem.jpeg",
         category: "Desportiva",
         active: true
       },
@@ -138,7 +138,7 @@ export async function initializeDatabase() {
       },
       {
         title: "Liberação de Cintura Escapular",
-        imageUrl: "https://images.pexels.com/photos/37719558/pexels-photo-37719558.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+        imageUrl: "/images/crislamassage2.jpeg",
         category: "Miofascial",
         active: true
       },

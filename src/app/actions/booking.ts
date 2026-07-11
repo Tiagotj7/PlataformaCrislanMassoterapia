@@ -4,6 +4,17 @@ import { db } from "@/db";
 import { services, settings, appointments, clients, blockedDates, blockedHours, testimonials, gallery, logs } from "@/db/schema";
 import { eq, and, sql } from "drizzle-orm";
 
+function normalizeImageUrl(value: string | null | undefined, fallback: string): string {
+  if (!value) return fallback;
+
+  const normalized = String(value).trim();
+  if (!normalized) return fallback;
+
+  if (normalized.includes("logocrislanmassagem")) return "/images/logocrislanmassagem.jpeg";
+  if (normalized.includes("crislamassage2")) return "/images/crislamassage2.jpeg";
+  return normalized;
+}
+
 const fallbackServices = [
   {
     id: 1,
@@ -12,7 +23,7 @@ const fallbackServices = [
     description: "Focada em atletas e praticantes de atividade física. Auxilia na liberação de ácido lático, alivia fadiga muscular pós-treino e melhora a flexibilidade para prevenir lesões.",
     durationMinutes: 60,
     price: "180.00",
-    image: "https://images.pexels.com/photos/27730453/pexels-photo-27730453.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    image: "/images/logocrislanmassagem.jpeg",
     category: "Desportiva",
     status: true,
     featured: true,
@@ -24,7 +35,7 @@ const fallbackServices = [
     description: "Técnica manual e instrumental para soltar a fáscia muscular. Desfaz pontos de gatilho, restaura a mobilidade das articulações e elimina dores crônicas.",
     durationMinutes: 60,
     price: "190.00",
-    image: "https://images.pexels.com/photos/27684617/pexels-photo-27684617.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    image: "/images/crislamassage2.jpeg",
     category: "Miofascial",
     status: true,
     featured: true,
@@ -34,7 +45,7 @@ const fallbackServices = [
 const fallbackSettings = {
   siteName: "Crislan Massoterapeuta",
   ownerName: "Crislan",
-  whatsappNumber: "5511999999999",
+  whatsappNumber: "5575981482035",
   instagramHandle: "crislanmassoterapeuta",
   address: "Rua das Olimpíadas, 200 - Vila Olímpia, São Paulo - SP",
   googleMapsUrl: "https://maps.google.com",
@@ -53,8 +64,12 @@ export async function getServices() {
     `;
 
     const list = await db.select().from(services).where(activeStatusCondition);
+    const normalizedList = list.map((item) => ({
+      ...item,
+      image: normalizeImageUrl(item.image, "/images/logocrislanmassagem.jpeg"),
+    }));
     // Sort featured first
-    return list.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+    return normalizedList.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
   } catch (err) {
     console.error("Error fetching services:", err);
     return fallbackServices;
@@ -73,7 +88,11 @@ export async function getPublicSettings() {
 
 export async function getPublicGallery() {
   try {
-    return await db.select().from(gallery).where(eq(gallery.active, true));
+    const list = await db.select().from(gallery).where(eq(gallery.active, true));
+    return list.map((item) => ({
+      ...item,
+      imageUrl: normalizeImageUrl(item.imageUrl, "/images/logocrislanmassagem.jpeg"),
+    }));
   } catch (err) {
     console.error("Error fetching gallery:", err);
     return [];

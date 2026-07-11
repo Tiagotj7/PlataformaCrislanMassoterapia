@@ -1,6 +1,7 @@
 "use server";
 
 import Link from "next/link";
+import Image from "next/image";
 import { getPublicSettings } from "@/app/actions/booking";
 import { ArrowRight, Shield, Award, Zap, Star, Phone, Sparkles } from "lucide-react";
 
@@ -90,10 +91,13 @@ export async function HeroSection() {
             
             {/* Main Photo Card */}
             <div className="relative w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden border border-[#1F1F1F] shadow-2xl group">
-              <img
-                src="src/assets/image/logocrislanmassagem.jpeg"
+              <Image
+                src="/images/logocrislanmassagem.jpeg"
                 alt="Crislan Massoterapeuta em Atendimento"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                fill
+                sizes="(max-width: 1024px) 100vw, 448px"
+                priority
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-transparent opacity-80"></div>
               

@@ -1,24 +1,62 @@
+'use server';
 import { db } from "./index";
-import { services, settings, testimonials, gallery, clients, appointments } from "./schema";
+import {
+  services,
+  settings,
+  testimonials,
+  gallery,
+  clients,
+  appointments,
+  users,
+} from "./schema";
+
 import { eq } from "drizzle-orm";
+import { hashPassword } from "@/lib/password";
 
 export async function initializeDatabase() {
-  // Check if settings exist
+
+  // ==========================================================
+  // CREATE DEFAULT ADMIN
+  // ==========================================================
+  const existingAdmin = await db
+    .select()
+    .from(users)
+    .where(eq(users.role, "admin"))
+    .limit(1);
+
+  if (existingAdmin.length === 0) {
+    await db.insert(users).values({
+      name: "Administrador",
+      email: "admin@crislan.com",
+      passwordHash: await hashPassword("Masso123.,"),
+      role: "admin",
+    });
+
+    console.log("✅ Usuário administrador criado com sucesso.");
+  }
+
+  // ==========================================================
+  // SETTINGS
+  // ==========================================================
   const existingSettings = await db.select().from(settings).limit(1);
+
   if (existingSettings.length === 0) {
     await db.insert(settings).values({
       siteName: "Crislan Massoterapeuta",
       ownerName: "Crislan Massoterapeuta",
       whatsappNumber: "5575981482035",
       instagramHandle: "crislan.massoterapia",
-      address: "Av. Pres. Juscelino Kubitschek, 1400 - Vila Olímpia, São Paulo - SP",
-      googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.282834181934!2d-46.68749452331572!3d-23.594165561413808!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5745dc7a0701%3A0x63cfbfd41d9c4901!2sAv.%20Pres.%20Juscelino%20Kubitschek%2C%201400%20-%20Vila%20Ol%C3%ADmpia%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004543-000!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr",
+      address:
+        "Av. Pres. Juscelino Kubitschek, 1400 - Vila Olímpia, São Paulo - SP",
+      googleMapsUrl:
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.282834181934!2d-46.68749452331572!3d-23.594165561413808!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5745dc7a0701%3A0x63cfbfd41d9c4901!2sAv.%20Pres.%20Juscelino%20Kubitschek%2C%201400%20-%20Vila%20Ol%C3%ADmpia%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004543-000!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr",
       businessHourStart: "08:00",
       businessHourEnd: "20:00",
       lunchHourStart: "12:00",
       lunchHourEnd: "13:30",
       sundaysOpen: false,
-      autoMessageText: "Olá! Recebemos seu agendamento de massoterapia com sucesso. Para confirmar ou esclarecer qualquer dúvida, fique à vontade para me chamar. Pagamento realizado presencialmente (Pix, Cartão ou Dinheiro)."
+      autoMessageText:
+        "Olá! Recebemos seu agendamento de massoterapia com sucesso. Para confirmar ou esclarecer qualquer dúvida, fique à vontade para me chamar. Pagamento realizado presencialmente (Pix, Cartão ou Dinheiro).",
     });
   }
 

@@ -538,6 +538,9 @@ export function BookingWizard({ initialServices, settings, preSelectedServiceId 
               <p className="text-sm text-slate-300 mt-2 leading-relaxed">
                 Olá <strong>{successData.appointment?.clientName}</strong>, sua vaga foi garantida e salva na agenda oficial de Crislan.
               </p>
+              <p className="text-sm text-slate-300 mt-2 leading-relaxed">
+                Por favor, confirme seu agendamento pelo WhatsApp para garantir a reserva e o pagamento será efetuado no local.
+              </p>
             </div>
 
             {/* Summary card */}

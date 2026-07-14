@@ -403,3 +403,33 @@ ALTER TABLE users
 ADD COLUMN IF NOT EXISTS status BOOLEAN NOT NULL DEFAULT TRUE;
 
 COMMIT;
+
+ALTER TABLE gallery
+RENAME COLUMN active TO status;
+
+ALTER TABLE settings
+ADD COLUMN logo TEXT;
+
+ALTER TABLE settings
+ADD COLUMN banner TEXT;
+
+ALTER TABLE settings
+ADD COLUMN primary_color TEXT DEFAULT '#C8A55A';
+
+ALTER TABLE settings
+ADD COLUMN secondary_color TEXT DEFAULT '#0F172A';
+
+ALTER TABLE settings
+ADD COLUMN facebook TEXT;
+
+ALTER TABLE settings
+ADD COLUMN tiktok TEXT;
+
+ALTER TABLE settings
+ADD COLUMN youtube TEXT;
+
+ALTER TABLE settings
+ADD COLUMN meta_title TEXT;
+
+ALTER TABLE settings
+ADD COLUMN meta_description TEXT;

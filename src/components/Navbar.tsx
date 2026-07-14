@@ -58,14 +58,6 @@ export async function Navbar() {
             <span>Agendar Sessão</span>
           </Link>
 
-          {/* Admin link helper */}
-          <Link
-            href="/admin"
-            title="Acessar Painel do Massoterapeuta"
-            className="flex items-center justify-center w-10 h-10 rounded-xl bg-[#1F1F1F] hover:bg-[#006BFF] text-slate-400 hover:text-white transition-all ml-1"
-          >
-            <ShieldCheck className="w-4 h-4" />
-          </Link>
         </div>
       </div>
     </header>

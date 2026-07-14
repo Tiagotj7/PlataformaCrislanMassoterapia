@@ -16,10 +16,17 @@ export const clients = pgTable('clients', {
   email: text('email'),
   notes: text('notes'),
 
-  status: boolean('status').default(true).notNull(),
+  status: boolean('status')
+    .default(true)
+    .notNull(),
 
-  appointmentsCount: integer('appointments_count').default(0).notNull(),
-  createdAt: timestamp('created_at').defaultNow().notNull()
+  appointmentsCount: integer('appointments_count')
+    .default(0)
+    .notNull(),
+
+  createdAt: timestamp('created_at')
+    .defaultNow()
+    .notNull()
 });
 
 export const services = pgTable('services', {

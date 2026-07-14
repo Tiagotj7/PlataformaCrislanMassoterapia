@@ -88,7 +88,7 @@ export async function getPublicSettings() {
 
 export async function getPublicGallery() {
   try {
-    const list = await db.select().from(gallery).where(eq(gallery.active, true));
+    const list = await db.select().from(gallery).where(eq(gallery.status, true));
     return list.map((item) => ({
       ...item,
       imageUrl: normalizeImageUrl(item.imageUrl, "/images/logocrislanmassagem.jpeg"),
@@ -101,7 +101,7 @@ export async function getPublicGallery() {
 
 export async function getPublicTestimonials() {
   try {
-    return await db.select().from(testimonials).where(eq(testimonials.active, true));
+    return await db.select().from(testimonials).where(eq(testimonials.status, true));
   } catch (err) {
     console.error("Error fetching testimonials:", err);
     return [];

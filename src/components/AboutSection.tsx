@@ -8,7 +8,7 @@ export async function AboutSection() {
     <section id="sobre" className="py-28 bg-[#0B0B0B] border-b border-[#1F1F1F] scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          
+
           {/* Left Visual Grid */}
           <div className="lg:col-span-6 grid grid-cols-2 gap-4 relative">
             <div className="space-y-4">

@@ -14,7 +14,7 @@ export async function AboutSection() {
             <div className="space-y-4">
               <div className="rounded-3xl overflow-hidden border border-[#1F1F1F] shadow-xl aspect-[4/5] relative">
                 <img
-                  src="/images/crislamassage2.jpeg"
+                  src="/images/MassoTerapeutica.png"
                   alt="Técnica de Liberação Miofascial"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />

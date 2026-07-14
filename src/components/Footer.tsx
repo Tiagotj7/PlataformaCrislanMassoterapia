@@ -7,8 +7,8 @@ import { MapPin, Phone, Clock, Camera, Award, HeartHandshake, Zap, Calendar } fr
 export async function Footer() {
   const settings = await getPublicSettings();
   const whatsappUrl = `https://wa.me/${settings?.whatsappNumber}?text=Olá! Gostaria de agendar um atendimento.`;
-  const instaUrl = settings?.instagramHandle.startsWith("http") 
-    ? settings.instagramHandle 
+  const instaUrl = settings?.instagramHandle.startsWith("http")
+    ? settings.instagramHandle
     : `https://instagram.com/${settings?.instagramHandle?.replace("@", "")}`;
 
   return (
@@ -108,9 +108,6 @@ export async function Footer() {
               <span className="text-slate-300 leading-snug">{settings?.address}</span>
             </li>
             <li className="flex items-center gap-3 pt-2">
-              <span className="px-3 py-1 rounded-lg bg-[#1F1F1F] text-xs font-semibold text-[#00A8FF] uppercase tracking-wider border border-[#003A7A]">
-                Estacionamento Conveniado No Local
-              </span>
             </li>
           </ul>
         </div>
@@ -118,13 +115,10 @@ export async function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-[#1F1F1F] py-8 bg-[#070707]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-          <p>© {new Date().getFullYear()} Crislan Massoterapeuta. Todos os direitos reservados.</p>
-          <div className="flex items-center gap-6">
-            <Link href="/admin" className="hover:text-[#006BFF] transition-colors">Acesso Administrativo</Link>
-            <span className="text-slate-600">|</span>
-            <span className="text-slate-500">Tecnologia Responsiva Next.js & PostgreSQL</span>
-          </div>
+        <div className="max-w-7xl mx-auto flex justify-center px-4 text-xs text-slate-500">
+          <p className="text-center">
+            © {new Date().getFullYear()} Crislan Massoterapeuta. Todos os direitos reservados.
+          </p>
         </div>
       </div>
     </footer>

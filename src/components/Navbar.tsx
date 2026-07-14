@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Calendar, Phone, ShieldCheck, Menu } from "lucide-react";
 import { getPublicSettings } from "@/app/actions/booking";
+import Image from "next/image";
 
 export async function Navbar() {
   const settings = await getPublicSettings();
@@ -13,9 +14,15 @@ export async function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#006BFF] to-[#003A7A] flex items-center justify-center text-white font-bebas text-2xl tracking-wider shadow-lg shadow-[#006BFF]/20 group-hover:scale-105 transition-transform">
-            CM
-          </div>
+{/*          <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-white shadow-lg shadow-[#006BFF]/20 group-hover:scale-105 transition-transform">
+            <Image
+              src="/images/LogoMasso3.jpg"
+              alt="Logo Crislan Massoterapeuta"
+              fill
+              className="object-contain p-1"
+              priority
+            />
+          </div> */}
           <div className="flex flex-col">
             <span className="font-bebas text-2xl tracking-widest text-white leading-none">CRISLAN</span>
             <span className="text-xs uppercase tracking-[0.25em] text-[#00A8FF] font-medium mt-0.5">MASSOTERAPEUTA</span>

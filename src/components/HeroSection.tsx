@@ -92,7 +92,7 @@ export async function HeroSection() {
             {/* Main Photo Card */}
             <div className="relative w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden border border-[#1F1F1F] shadow-2xl group">
               <Image
-                src="/images/logocrislanmassagem.jpeg"
+                src="/images/MassoCapa1.png"
                 alt="Crislan Massoterapeuta em Atendimento"
                 fill
                 sizes="(max-width: 1024px) 100vw, 448px"

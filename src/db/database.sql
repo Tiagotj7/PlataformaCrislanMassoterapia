@@ -221,3 +221,131 @@ VALUES (
     '5511999999999',
     'crislanmassoterapeuta'
 );
+
+--alter services update
+
+BEGIN;
+
+DELETE FROM public.services;
+
+ALTER SEQUENCE services_id_seq RESTART WITH 1;
+
+INSERT INTO public.services (
+    title,
+    slug,
+    description,
+    duration_minutes,
+    price,
+    image,
+    category,
+    status,
+    featured
+)
+VALUES
+(
+'Massagem Relaxante',
+'massagem-relaxante',
+'Redução do estresse, melhora da circulação e relaxamento profundo.',
+50,
+80.00,
+'/images/logocrislanmassagem.jpeg',
+'Massagem',
+true,
+true
+),
+(
+'Massagem Terapêutica',
+'massagem-terapeutica',
+'Alívio de dores musculares, tensões e pontos gatilho.',
+50,
+100.00,
+'/images/crislamassage2.jpeg',
+'Massagem',
+true,
+true
+),
+(
+'Massagem Desportiva',
+'massagem-desportiva',
+'Preparação e recuperação muscular para atletas.',
+50,
+110.00,
+'/images/logocrislanmassagem.jpeg',
+'Massagem',
+true,
+true
+),
+(
+'Liberação Miofascial',
+'liberacao-miofascial',
+'Liberação das fáscias e redução da rigidez muscular.',
+40,
+100.00,
+'/images/crislamassage2.jpeg',
+'Recuperação',
+true,
+true
+),
+(
+'Ventosaterapia',
+'ventosaterapia',
+'Estímulo da circulação e analgesia muscular.',
+35,
+80.00,
+'/images/crislamassage2.jpeg',
+'Terapias',
+true,
+false
+),
+(
+'Massagem + Ventosa',
+'massagem-ventosa',
+'Tratamento combinado para dores musculares profundas.',
+60,
+150.00,
+'/images/crislamassage2.jpeg',
+'Terapias',
+true,
+true
+),
+(
+'Atendimento Pós-Treino',
+'atendimento-pos-treino',
+'Recuperação muscular rápida para atletas.',
+40,
+90.00,
+'/images/logocrislanmassagem.jpeg',
+'Recuperação',
+true,
+false
+);
+
+COMMIT;
+
+UPDATE services
+SET image = '/images/MassoRelaxante.png'
+WHERE slug = 'massagem-relaxante';
+
+UPDATE services
+SET image = '/images/MassoTerapeutica.png'
+WHERE slug = 'massagem-terapeutica';
+
+UPDATE services
+SET image = '/images/MassoDesportiva.png'
+WHERE slug = 'massagem-desportiva';
+
+UPDATE services
+SET image = '/images/MassoMiofacial.png'
+WHERE slug = 'liberacao-miofascial';
+
+UPDATE services
+SET image = '/images/MassoVentosa.png'
+WHERE slug = 'ventosaterapia';
+
+UPDATE services
+SET image = '/images/MassoVentosoterapia.png'
+WHERE slug = 'massagem-ventosa';
+
+UPDATE services
+SET image = '/images/MassoPosTreino.png'
+WHERE slug = 'atendimento-pos-treino';

@@ -20,6 +20,11 @@ export const metadata: Metadata = {
   description: "Sistema profissional de agendamento de massoterapia. Especialista em atletas, liberação miofascial, ventosaterapia e massagem desportiva em São Paulo.",
   keywords: ["massoterapia", "massagem desportiva", "liberação miofascial", "ventosaterapia", "massagista esportivo", "recuperação muscular", "atendimento domiciliar"],
   authors: [{ name: "Crislan Massoterapeuta" }],
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
   openGraph: {
     title: "Crislan Massoterapeuta — Recuperação Muscular & Alta Performance",
     description: "Agende sua sessão de massoterapia desportiva e liberação miofascial online em menos de 60 segundos.",

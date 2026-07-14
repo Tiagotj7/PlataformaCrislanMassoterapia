@@ -349,3 +349,57 @@ WHERE slug = 'massagem-ventosa';
 UPDATE services
 SET image = '/images/MassoPosTreino.png'
 WHERE slug = 'atendimento-pos-treino';
+
+-- ==========================================================
+-- SOFT DELETE - CRISLAN MASSOTERAPIA
+-- Status:
+-- 1 = Ativo
+-- 0 = Inativo (Excluído logicamente)
+-- PostgreSQL / Supabase
+-- ==========================================================
+
+BEGIN;
+
+-------------------------------------------------------
+-- CLIENTS
+-------------------------------------------------------
+ALTER TABLE clients
+ADD COLUMN IF NOT EXISTS status BOOLEAN NOT NULL DEFAULT TRUE;
+
+-------------------------------------------------------
+-- APPOINTMENTS
+-------------------------------------------------------
+ALTER TABLE appointments
+ADD COLUMN IF NOT EXISTS active BOOLEAN NOT NULL DEFAULT TRUE;
+
+-------------------------------------------------------
+-- SETTINGS
+-------------------------------------------------------
+ALTER TABLE settings
+ADD COLUMN IF NOT EXISTS status BOOLEAN NOT NULL DEFAULT TRUE;
+
+-------------------------------------------------------
+-- BLOCKED DATES
+-------------------------------------------------------
+ALTER TABLE blocked_dates
+ADD COLUMN IF NOT EXISTS status BOOLEAN NOT NULL DEFAULT TRUE;
+
+-------------------------------------------------------
+-- BLOCKED HOURS
+-------------------------------------------------------
+ALTER TABLE blocked_hours
+ADD COLUMN IF NOT EXISTS status BOOLEAN NOT NULL DEFAULT TRUE;
+
+-------------------------------------------------------
+-- LOGS
+-------------------------------------------------------
+ALTER TABLE logs
+ADD COLUMN IF NOT EXISTS status BOOLEAN NOT NULL DEFAULT TRUE;
+
+-------------------------------------------------------
+-- USERS
+-------------------------------------------------------
+ALTER TABLE users
+ADD COLUMN IF NOT EXISTS status BOOLEAN NOT NULL DEFAULT TRUE;
+
+COMMIT;

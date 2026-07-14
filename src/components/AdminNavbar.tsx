@@ -19,7 +19,7 @@ export function AdminNavbar() {
     { name: "Agenda Oficial", href: "/admin/agenda", icon: Calendar },
     { name: "Clientes", href: "/admin/clients", icon: Users },
     { name: "Serviços", href: "/admin/services", icon: Briefcase },
-    { name: "Galeria", href: "/admin/content", icon: Image },
+    { name: "Galeria", href: "/admin/gallery", icon: Image },
     { name: "Configurações", href: "/admin/settings", icon: Settings },
   ];
 

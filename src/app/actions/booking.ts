@@ -237,7 +237,9 @@ export async function createAppointment(data: {
 
     // 3. Find or Create Client
     let clientRecord: any;
-    const existingClient = await db.select().from(clients).where(eq(clients.phone, data.clientPhone));
+    const existingClient = await db.select()
+.from(clients)
+.where(eq(clients.status, true)).where(eq(clients.phone, data.clientPhone));
 
     if (existingClient.length > 0) {
       clientRecord = existingClient[0];

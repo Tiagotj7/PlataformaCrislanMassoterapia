@@ -15,6 +15,9 @@ export const clients = pgTable('clients', {
   phone: text('phone').notNull().unique(),
   email: text('email'),
   notes: text('notes'),
+
+  status: boolean('status').default(true).notNull(),
+
   appointmentsCount: integer('appointments_count').default(0).notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull()
 });
@@ -88,17 +91,17 @@ export const testimonials = pgTable('testimonials', {
   content: text('content').notNull(),
   rating: integer('rating').default(5).notNull(),
   image: text('image'),
-  active: boolean('active').default(true).notNull(),
+  status: boolean('status').default(true).notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull()
 });
 
-export const gallery = pgTable('gallery', {
-  id: serial('id').primaryKey(),
-  title: text('title').notNull(),
-  imageUrl: text('image_url').notNull(),
-  category: text('category').default('Atendimento').notNull(),
-  active: boolean('active').default(true).notNull(),
-  createdAt: timestamp('created_at').defaultNow().notNull()
+export const gallery = pgTable("gallery", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  imageUrl: text("image_url").notNull(),
+  category: text("category").default("Atendimento").notNull(),
+  status: boolean("status").default(true).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
 export const logs = pgTable('logs', {

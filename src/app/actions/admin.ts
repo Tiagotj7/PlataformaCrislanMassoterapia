@@ -78,7 +78,9 @@ export async function getDashboardSummary() {
   const totalClients = Number(totalClientsRes[0]?.count || 0);
 
   // Recent clients
-  const recentClients = await db.select().from(clients).orderBy(desc(clients.createdAt)).limit(5);
+  const recentClients = await db.select()
+.from(clients)
+.where(eq(clients.status, true)).orderBy(desc(clients.createdAt)).limit(5);
 
   // Weekly agenda summary (appointments from today to 7 days ahead)
   const nextWeekObj = new Date();
@@ -146,10 +148,13 @@ export async function deleteAppointmentAction(id: number) {
 
 // Services Actions
 export async function getAdminServices() {
-  const isAuth = await checkAdminAuth();
-  if (!isAuth) throw new Error("Unauthorized");
-  return await db.select().from(services).orderBy(services.title);
+  return await db
+      .select()
+      .from(services)
+      .where(eq(services.status, true))
+      .orderBy(services.title);
 }
+
 
 export async function saveServiceAction(data: any) {
   const isAuth = await checkAdminAuth();
@@ -186,10 +191,31 @@ export async function saveServiceAction(data: any) {
 
 export async function deleteServiceAction(id: number) {
   const isAuth = await checkAdminAuth();
+
   if (!isAuth) throw new Error("Unauthorized");
 
-  await db.delete(services).where(eq(services.id, id));
-  return { success: true };
+  await db
+    .update(services)
+    .set({
+      status: false
+    })
+    .where(eq(services.id, id));
+
+  return {
+    success: true
+  };
+}
+
+export async function restoreServiceAction(id:number){
+
+    await db
+      .update(services)
+      .set({
+          status:true
+      })
+      .where(eq(services.id,id));
+
+    return {success:true};
 }
 
 // Clients Actions
@@ -197,7 +223,9 @@ export async function getAdminClients(search?: string) {
   const isAuth = await checkAdminAuth();
   if (!isAuth) throw new Error("Unauthorized");
 
-  const list = await db.select().from(clients).orderBy(desc(clients.appointmentsCount), clients.name);
+  const list = await db.select()
+.from(clients)
+.where(eq(clients.status, true)).orderBy(desc(clients.appointmentsCount), clients.name);
   if (!search) return list;
   const q = search.toLowerCase();
   return list.filter(c => c.name.toLowerCase().includes(q) || c.phone.includes(q));
@@ -329,7 +357,7 @@ export async function saveTestimonialAction(data: any) {
       roleOrSport: data.roleOrSport,
       content: data.content,
       rating: Number(data.rating || 5),
-      active: Boolean(data.active)
+      status: Boolean(data.status)
     }).where(eq(testimonials.id, data.id));
   } else {
     await db.insert(testimonials).values({
@@ -337,7 +365,7 @@ export async function saveTestimonialAction(data: any) {
       roleOrSport: data.roleOrSport,
       content: data.content,
       rating: Number(data.rating || 5),
-      active: Boolean(data.active)
+      status: Boolean(data.status)
     });
   }
   return { success: true };
@@ -353,7 +381,15 @@ export async function deleteTestimonialAction(id: number) {
 
 // Gallery Action
 export async function getAdminGallery() {
-  return await db.select().from(gallery).orderBy(desc(gallery.id));
+  const isAuth = await checkAdminAuth();
+
+  if (!isAuth) throw new Error("Unauthorized");
+
+  return await db
+    .select()
+    .from(gallery)
+    .where(eq(gallery.status, true))
+    .orderBy(desc(gallery.id));
 }
 
 export async function saveGalleryAction(data: any) {
@@ -365,14 +401,14 @@ export async function saveGalleryAction(data: any) {
       title: data.title,
       imageUrl: data.imageUrl,
       category: data.category,
-      active: Boolean(data.active)
+      status: Boolean(data.status)
     }).where(eq(gallery.id, data.id));
   } else {
     await db.insert(gallery).values({
       title: data.title,
       imageUrl: data.imageUrl,
       category: data.category,
-      active: Boolean(data.active)
+      status: Boolean(data.status)
     });
   }
   return { success: true };
@@ -380,8 +416,33 @@ export async function saveGalleryAction(data: any) {
 
 export async function deleteGalleryAction(id: number) {
   const isAuth = await checkAdminAuth();
+
   if (!isAuth) throw new Error("Unauthorized");
 
-  await db.delete(gallery).where(eq(gallery.id, id));
-  return { success: true };
+  await db
+    .update(gallery)
+    .set({
+      status: false
+    })
+    .where(eq(gallery.id, id));
+
+  return {
+    success: true
+  };
+}
+
+export async function getServiceById(id: number) {
+  const isAuth = await checkAdminAuth();
+
+  if (!isAuth) {
+    throw new Error("Unauthorized");
+  }
+
+  const result = await db
+    .select()
+    .from(services)
+    .where(eq(services.id, id))
+    .limit(1);
+
+  return result[0] ?? null;
 }

@@ -194,7 +194,9 @@ export async function initializeDatabase() {
   }
 
   // Check if clients and sample appointments exist for demo in dashboard
-  const existingClients = await db.select().from(clients).limit(1);
+  const existingClients = await db.select()
+.from(clients)
+.where(eq(clients.status, true)).limit(1);
   if (existingClients.length === 0) {
     const demoClient1 = await db.insert(clients).values({
       name: "Gabriel Santos",

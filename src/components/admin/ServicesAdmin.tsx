@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
-import { getServices } from "@/app/actions/services";
+import { useRouter } from "next/navigation";
+
 import {
   Clock,
   Star,
@@ -7,8 +10,46 @@ import {
   Trash2,
 } from "lucide-react";
 
-export async function ServicesAdmin() {
-  const services = await getServices();
+import { deleteServiceAction } from "@/app/actions/admin";
+
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  price: string | number;
+  durationMinutes: number;
+  featured: boolean;
+  status: boolean;
+}
+
+interface Props {
+  services: Service[];
+}
+
+export function ServicesAdmin({ services }: Props) {
+  const router = useRouter();
+
+  async function handleDelete(id: number) {
+    const confirmDelete = window.confirm(
+      "Deseja realmente excluir este serviço?"
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+      const result = await deleteServiceAction(id);
+
+      if (result.success) {
+        router.refresh();
+      } else {
+        alert("Não foi possível excluir o serviço.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao excluir serviço.");
+    }
+  }
 
   if (services.length === 0) {
     return (
@@ -82,7 +123,10 @@ export async function ServicesAdmin() {
                   <Pencil className="w-4 h-4 text-blue-400" />
                 </Link>
 
-                <button className="p-2 rounded-lg bg-[#1A1A1A] hover:bg-red-500/20 transition">
+                <button
+                  onClick={() => handleDelete(service.id)}
+                  className="p-2 rounded-lg bg-[#1A1A1A] hover:bg-red-500/20 transition"
+                >
                   <Trash2 className="w-4 h-4 text-red-400" />
                 </button>
               </div>

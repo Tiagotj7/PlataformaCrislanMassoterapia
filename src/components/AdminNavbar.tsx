@@ -19,30 +19,42 @@ export function AdminNavbar() {
     { name: "Agenda Oficial", href: "/admin/agenda", icon: Calendar },
     { name: "Clientes", href: "/admin/clients", icon: Users },
     { name: "Serviços", href: "/admin/services", icon: Briefcase },
-    { name: "Galeria & Depoimentos", href: "/admin/content", icon: Image },
+    { name: "Galeria", href: "/admin/content", icon: Image },
     { name: "Configurações", href: "/admin/settings", icon: Settings },
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-[#141414] border-b border-[#1F1F1F] shadow-lg">
+    <header className="sticky top-0 z-50 border-b border-[#1F1F1F] bg-[#0B0B0B]/90 backdrop-blur-xl shadow-xl shadow-black/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center h-20">
           
-          {/* Admin Logo */}
-          <div className="flex items-center gap-3">
-            <Link href="/" className="flex items-center gap-2 group" title="Ver site principal">
-              <div className="w-9 h-9 rounded-xl bg-[#006BFF] flex items-center justify-center text-white font-bebas text-lg shadow-md group-hover:scale-105 transition-all">
-                CM
-              </div>
-              <span className="font-bebas text-xl text-white tracking-widest hidden sm:inline group-hover:text-[#00A8FF] transition-colors">CRISLAN ADMIN</span>
-            </Link>
-            <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 text-[10px] font-bold uppercase tracking-wider border border-amber-500/20">
-              Gestão POO & Drizzle
-            </span>
-          </div>
+<div className="flex items-center pr-10 mr-10 border-r border-[#1F1F1F] shrink-0">
 
+  <Link
+    href="/"
+    className="group flex items-center gap-4"
+    title="Visualizar site"
+  >
+
+    <div className="hidden lg:flex flex-col leading-none">
+
+      <span className="font-bebas text-2xl tracking-[0.2em] text-white">
+        CRISLAN
+      </span>
+
+      <span className="uppercase text-[10px] tracking-[0.4em] text-[#00A8FF]">
+        Painel Administrativo
+      </span>
+
+    </div>
+
+  </Link>
+
+  <div className="hidden xl:block w-px h-10" />
+
+</div>
           {/* Nav items */}
-          <nav className="flex items-center gap-1 sm:gap-2 overflow-x-auto no-scrollbar py-2">
+         <nav className="flex items-center gap-2 mx-auto">
             {navLinks.map((item) => {
               const IconComp = item.icon;
               const isActive = pathname === item.href;
@@ -50,7 +62,7 @@ export function AdminNavbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${
+                  className={`flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
                     isActive
                       ? "bg-[#006BFF] text-white shadow-md shadow-[#006BFF]/25"
                       : "text-slate-400 hover:text-white hover:bg-[#1F1F1F]"
@@ -64,7 +76,7 @@ export function AdminNavbar() {
           </nav>
 
           {/* External links and Logout */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3 ml-10 pl-8 border-l border-[#1F1F1F] shrink-0">
             <Link
               href="/"
               target="_blank"

@@ -47,7 +47,7 @@ export async function initializeDatabase() {
       whatsappNumber: "5575981482035",
       instagramHandle: "crislan.massoterapia",
       address:
-        "Av. Pres. Juscelino Kubitschek, 1400 - Vila Olímpia, São Paulo - SP",
+        "Tv. Brasiliana - 2 de Julho, Alagoinhas - BA",
       googleMapsUrl:
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.282834181934!2d-46.68749452331572!3d-23.594165561413808!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5745dc7a0701%3A0x63cfbfd41d9c4901!2sAv.%20Pres.%20Juscelino%20Kubitschek%2C%201400%20-%20Vila%20Ol%C3%ADmpia%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004543-000!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr",
       businessHourStart: "08:00",

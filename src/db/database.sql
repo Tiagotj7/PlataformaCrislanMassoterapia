@@ -433,3 +433,6 @@ ADD COLUMN meta_title TEXT;
 
 ALTER TABLE settings
 ADD COLUMN meta_description TEXT;
+
+ALTER TABLE testimonials
+RENAME COLUMN active TO status;

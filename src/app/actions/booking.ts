@@ -236,26 +236,48 @@ export async function createAppointment(data: {
     }
 
     // 3. Find or Create Client
-    let clientRecord: any;
-    const existingClient = await db.select()
-.from(clients)
-.where(eq(clients.status, true)).where(eq(clients.phone, data.clientPhone));
+
+    const existingClient = await db
+      .select()
+      .from(clients)
+      .where(
+        and(
+          eq(clients.status, true),
+          eq(clients.phone, data.clientPhone)
+        )
+      );
+
+    let clientRecord:
+      | typeof clients.$inferSelect
+      | undefined;
 
     if (existingClient.length > 0) {
+
       clientRecord = existingClient[0];
-      // Increment count
-      await db.update(clients).set({
-        name: data.clientName, // update name if changed
-        appointmentsCount: clientRecord.appointmentsCount + 1
-      }).where(eq(clients.id, clientRecord.id));
+
+      await db
+        .update(clients)
+        .set({
+          name: data.clientName,
+          appointmentsCount: clientRecord.appointmentsCount + 1
+        })
+        .where(eq(clients.id, clientRecord.id));
+
     } else {
-      const newClients = await db.insert(clients).values({
-        name: data.clientName,
-        phone: data.clientPhone,
-        notes: data.observations ? `Primeira observação: ${data.observations}` : "",
-        appointmentsCount: 1
-      }).returning();
-      clientRecord = newClients[0];
+
+      const [newClient] = await db
+        .insert(clients)
+        .values({
+          name: data.clientName,
+          phone: data.clientPhone,
+          notes: data.observations
+            ? `Primeira observação: ${data.observations}`
+            : "",
+          appointmentsCount: 1
+        })
+        .returning();
+
+      clientRecord = newClient;
     }
 
     // 4. Insert Appointment
